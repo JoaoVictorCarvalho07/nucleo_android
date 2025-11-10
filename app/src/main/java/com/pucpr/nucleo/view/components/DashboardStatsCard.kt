@@ -11,17 +11,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.pucpr.nucleo.viewmodel.DashboardStats
+import com.pucpr.nucleo.utils.CurrencyUtils
 
 @Composable
 fun DashboardStatsCard(
+    stats: DashboardStats,
     modifier: Modifier = Modifier
 ) {
-    // Dados estáticos por enquanto
-    val balance = 295.00
-    val income = 500.00
-    val expense = 205.00
-    val transactionCount = 3
-
     Card(
         modifier = modifier.fillMaxWidth(),
         shape = MaterialTheme.shapes.medium,
@@ -37,7 +34,7 @@ fun DashboardStatsCard(
             )
 
             Text(
-                text = "R$ ${"%.2f".format(balance)}",
+                text = CurrencyUtils.formatCurrency(stats.balance),
                 style = MaterialTheme.typography.headlineLarge,
                 color = MaterialTheme.colorScheme.primary,
                 fontWeight = FontWeight.Bold,
@@ -53,7 +50,7 @@ fun DashboardStatsCard(
                 // Receita
                 StatColumn(
                     title = "Receita",
-                    value = "R$ ${"%.2f".format(income)}",
+                    value = CurrencyUtils.formatCurrency(stats.incomeTotal),
                     color = Color(0xFF4CAF50),
                     icon = Icons.Default.TrendingUp
                 )
@@ -69,7 +66,7 @@ fun DashboardStatsCard(
                 // Despesa
                 StatColumn(
                     title = "Despesa",
-                    value = "R$ ${"%.2f".format(expense)}",
+                    value = CurrencyUtils.formatCurrency(stats.expenseTotal),
                     color = Color(0xFFF44336),
                     icon = Icons.Default.TrendingDown
                 )
@@ -85,7 +82,7 @@ fun DashboardStatsCard(
                 // Total de Transações
                 StatColumn(
                     title = "Total",
-                    value = "$transactionCount",
+                    value = "${stats.transactionCount}",
                     color = MaterialTheme.colorScheme.primary,
                     icon = Icons.Default.Receipt
                 )

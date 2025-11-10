@@ -1,8 +1,10 @@
 package com.pucpr.nucleo.data
 
+
 import android.content.Context
 import android.content.SharedPreferences
 import com.pucpr.nucleo.model.Transaction
+import com.pucpr.nucleo.model.TransactionType
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
